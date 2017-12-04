@@ -1,5 +1,5 @@
 #! /usr/bin/python
-with open('test2.txt', 'r') as txtfile:
+with open('input.txt', 'r') as txtfile:
   data = txtfile.read().strip().split('\n')
 
   valid_phrases = 0
