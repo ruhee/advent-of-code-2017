@@ -23,7 +23,7 @@
 #  x x x
 #
 # From origin:
-# [-1,1]    [0, 1]  [1, 1]
+# [-1, 1]   [0, 1]  [1, 1]
 # [-1, 0]           [1, 0]
 # [-1, -1]  [0, -1] [1, -1]
 
@@ -84,27 +84,16 @@ def check_repeat():
 while current_value < num:
   if current_direction == 'right':
     coordinates[0] += 1
-    current_repeat += 1
-    values[get_key(coordinates)] = sum_adjacent(coordinates)
-    current_value = values[get_key(coordinates)]
-    check_repeat()
   elif current_direction == 'up':
     coordinates[1] += 1
-    current_repeat += 1
-    values[get_key(coordinates)] = sum_adjacent(coordinates)
-    current_value = values[get_key(coordinates)]
-    check_repeat()
   elif current_direction == 'left':
     coordinates[0] -= 1
-    current_repeat += 1
-    values[get_key(coordinates)] = sum_adjacent(coordinates)
-    current_value = values[get_key(coordinates)]
-    check_repeat()
   elif current_direction == 'down':
     coordinates[1] -= 1
-    current_repeat += 1
-    values[get_key(coordinates)] = sum_adjacent(coordinates)
-    current_value = values[get_key(coordinates)]
-    check_repeat()
+
+  current_repeat += 1
+  values[get_key(coordinates)] = sum_adjacent(coordinates)
+  current_value = values[get_key(coordinates)]
+  check_repeat()
 
 print current_value
