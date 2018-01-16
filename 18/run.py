@@ -20,27 +20,17 @@ with open('input.txt', 'r') as txtfile:
 
   current_instruction = 0
   last_played_val = 0
-  last_recovered_val = None
+  last_recovered_val = 0
 
-  while last_recovered_val is None:
-    pass
-
-  ##############
-
-  for line in data:
-    # could be formatted like `set i 31` or `snd a` or `jgz 1 3`
-    # snd/rcv do not have a value param, the others do
-    # [instruction] [register or number] [optional value]
-
-    line = line.split()
+  while last_recovered_val == 0:
+    line = data[current_instruction].split()
     instruction = line[0]
     register = line[1] # TODO: This might be a number instead of a register key
 
     if instruction == 'snd':
       last_played_val = registers[register]
     elif instruction == 'rcv':
-      if last_played_val is not 0:
-        print 'Last value:', last_played_val
+      last_recovered_val = last_played_val
       pass
     else:
       value = line[2]
@@ -61,13 +51,18 @@ with open('input.txt', 'r') as txtfile:
       elif instruction == 'jgz':
         if register.isdigit():
           if register is not 0:
+            current_instruction = current_instruction + register
             pass
           pass
         else:
           if registers[register] is not 0:
-            # go to line indicated by offset
+            current_instruction = current_instruction + registers[register]
             pass
           pass
         pass
+    pass
 
-print registers
+    if instruction is not 'jgz':
+      current_instruction += 1
+
+print last_recovered_val
