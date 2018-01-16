@@ -18,6 +18,14 @@ with open('input.txt', 'r') as txtfile:
   for k in keys:
     registers[k] = 0
 
+  current_instruction = 0
+  last_played_val = 0
+  last_recovered_val = None
+
+  while last_recovered_val is None:
+    pass
+
+  ##############
 
   for line in data:
     # could be formatted like `set i 31` or `snd a` or `jgz 1 3`
@@ -27,7 +35,6 @@ with open('input.txt', 'r') as txtfile:
     line = line.split()
     instruction = line[0]
     register = line[1] # TODO: This might be a number instead of a register key
-    last_played_val = 0
 
     if instruction == 'snd':
       last_played_val = registers[register]
